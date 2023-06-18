@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+   <head><title>Tail -f final practice </title></head>
+   <script src="/socket.io/socket.io.js"></script>
+   <script>
+    var socket = io("http://localhost:4000");
+
+      socket.on('update-log', function(data){
+          console.log(data);
+          for(elem of data) document.getElementById('message-container').innerHTML += '<p>' + elem + '</p>';
+      });
+      socket.on('init',function(data){
+        console.log(data);
+        for(elem of data) document.getElementById('message-container').innerHTML += '<p>' + elem + '</p>';
+      })
+   </script>
+   <body>
+       <h1>Log monitoring application Page </h1>
+      <div id="message-container"></div>
+      </body>
+   </html>
